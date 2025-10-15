@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -51,12 +52,14 @@ fun CreateAccountPage() {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
             .padding(16.dp)
     ) {
         Text(
             text = "Create Account",
-            fontSize = 36.sp,
+            fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.padding(top = 40.dp, bottom = 24.dp)
         )
 
@@ -103,6 +106,7 @@ fun CreateAccountPage() {
         // Gender selection
         Text(
             text = "Gender",
+            color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.padding(top = 8.dp, bottom = 4.dp)
         )
 
@@ -113,12 +117,12 @@ fun CreateAccountPage() {
                         selected = selectedGender == option,
                         onClick = { selectedGender = option }
                     )
-                    Text(option, modifier = Modifier.padding(end = 12.dp))
+                    Text(option, modifier = Modifier.padding(end = 12.dp),  color = MaterialTheme.colorScheme.onBackground)
                 }
             }
         }
 
-        // Checkbox agreement
+        // Checkbox
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(top = 24.dp)
@@ -126,7 +130,8 @@ fun CreateAccountPage() {
             Checkbox(checked = agreed, onCheckedChange = { agreed = it })
             Text(
                 text = "I agree to the Terms and Conditions",
-                modifier = Modifier.padding(start = 4.dp)
+                modifier = Modifier.padding(start = 4.dp),
+                color = MaterialTheme.colorScheme.onBackground,
             )
         }
 
@@ -149,10 +154,10 @@ fun CreateAccountPage() {
                 modifier = Modifier
                     .width(140.dp)
                     .height(44.dp),
-                shape = RoundedCornerShape(10.dp),
-//                colors = ButtonDefaults.buttonColors(
-//                    containerColor = MaterialTheme.colorScheme.errorContainer
-//                )
+                shape = RoundedCornerShape(25.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary
+                )
             ) {
                 Text("Clear")
             }
@@ -176,7 +181,10 @@ fun CreateAccountPage() {
                 modifier = Modifier
                     .width(140.dp)
                     .height(44.dp),
-                shape = RoundedCornerShape(10.dp)
+                shape = RoundedCornerShape(25.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary
+                )
             ) {
                 Text("Submit")
             }
@@ -184,9 +192,17 @@ fun CreateAccountPage() {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, uiMode = android.content.res.Configuration.UI_MODE_NIGHT_NO)
 @Composable
-fun CreateAccountPreview() {
+fun CreateAccountLightPreview() {
+    CreateAccountTheme {
+        CreateAccountPage()
+    }
+}
+
+@Preview(showBackground = true, uiMode = android.content.res.Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun CreateAccountDarkPreview() {
     CreateAccountTheme {
         CreateAccountPage()
     }
