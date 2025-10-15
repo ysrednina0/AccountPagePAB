@@ -105,6 +105,7 @@ fun CreateAccountPage() {
             )
         }
 
+        // Username
         OutlinedTextField(
             value = username,
             onValueChange = { username = it },
@@ -114,6 +115,7 @@ fun CreateAccountPage() {
                 .padding(bottom = 16.dp)
         )
 
+        // Password
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
@@ -143,7 +145,7 @@ fun CreateAccountPage() {
             }
         }
 
-        // Checkbox
+        // Agreement
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(top = 24.dp)
@@ -185,19 +187,11 @@ fun CreateAccountPage() {
 
             Button(
                 onClick = {
-                    if (agreed) {
-                        Toast.makeText(
-                            context,
-                            "Account Created:\nName: $firstName $lastName\nUsername: $username\nGender: $selectedGender",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    } else {
-                        Toast.makeText(
-                            context,
-                            "Please agree to Terms and Conditions",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                    Toast.makeText(
+                        context.applicationContext,
+                        "Thank you for registering!",
+                        Toast.LENGTH_LONG
+                    ).show()
                 },
                 modifier = Modifier
                     .width(140.dp)
